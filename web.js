@@ -11,7 +11,7 @@ app.get('/', function(request, response) {
       }
 
       var buf = new Buffer(data);
-      buf.toString();
+      return buf.toString();
   });
 });
 
