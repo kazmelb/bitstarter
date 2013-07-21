@@ -4,14 +4,14 @@ var fs = require('fs');
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-  response.send(fs.readFileSync('./index.html', function(err, data){
+  fs.readFileSync('./index.html', function(err, data){
       if (err) {
 	  console.log('Error processing file');
 	  return;
       }
 
       var buf = new Buffer(data);
-      return buf.toString();
+      response.send(buf.write());
   });
 });
 
