@@ -3,19 +3,10 @@ var fs = require('fs');
 
 var app = express.createServer(express.logger());
 
+var dataBuffer = new Buffer(fs.readFileSync('index.html'));
+
 app.get('/', function(request, response) {
-  var buff = fs.readFileSync('./index.html', function(err, data){
-      if (err) {
-	  console.log('Error processing file');
-	  return;
-      }
-
-      return new Buffer(data);
-      
-  });
-
-    response.send(buff.toString());
-    
+    response.send(dataBuffer.toString());
 });
 
 var port = process.env.PORT || 5000;
